@@ -1,2 +1,2 @@
-# Apontamento-de-Produ-o
+# Apontamento-de-Produção
 Sistema de apontamento de produção
