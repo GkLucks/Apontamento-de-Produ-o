@@ -1,4 +1,5 @@
-
+using System;
+namespace Apontamento {
 public class Maquina : Base
 {
     public string TipoProcessoSuportado { get; set; }
@@ -14,4 +15,5 @@ public class Maquina : Base
         TipoProcessoSuportado = processo;
         Ativa = ativa;
     }
+}
 }

@@ -1,0 +1,15 @@
+/workspaces/Apontamento-de-Produ-o/Apontamento/bin/Debug/net9.0/Apontamento
+/workspaces/Apontamento-de-Produ-o/Apontamento/bin/Debug/net9.0/Apontamento.deps.json
+/workspaces/Apontamento-de-Produ-o/Apontamento/bin/Debug/net9.0/Apontamento.runtimeconfig.json
+/workspaces/Apontamento-de-Produ-o/Apontamento/bin/Debug/net9.0/Apontamento.dll
+/workspaces/Apontamento-de-Produ-o/Apontamento/bin/Debug/net9.0/Apontamento.pdb
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.AssemblyInfoInputs.cache
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.AssemblyInfo.cs
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.csproj.CoreCompileInputs.cache
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.sourcelink.json
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.dll
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/refint/Apontamento.dll
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.pdb
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/Apontamento.genruntimeconfig.cache
+/workspaces/Apontamento-de-Produ-o/Apontamento/obj/Debug/net9.0/ref/Apontamento.dll

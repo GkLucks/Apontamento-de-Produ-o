@@ -1,4 +1,4 @@
-
+namespace Apontamento {
 public class Operador : Base
 {
     public string Usuario { get; set; }
@@ -15,4 +15,5 @@ public class Operador : Base
         Senha = senha;
         Ativa = ativa;
     }
+}
 }
