@@ -8,7 +8,11 @@ namespace Apontamento
         {
 
 
-
+            Maquina maquinateste1b = new Maquina ();
+            
+            maquinateste1b.Nome = "maquina de pão";
+            
+            Console.WriteLine(maquinateste1b.Nome);
 
 
 
