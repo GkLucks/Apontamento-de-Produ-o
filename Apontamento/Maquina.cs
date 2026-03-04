@@ -2,12 +2,18 @@ using System;
 namespace Apontamento {
 public class Maquina : Base
 {
-    public string TipoProcessoSuportado { get; set; }
+    public string TipoProcessoSuportado { get; set; } = string.Empty;
     public bool Ativa { get; set; }
 
-    public Maquina() { }
+    // Construtor simples (apenas nome)
+    public Maquina(string nome)
+    {
+        Nome = nome;
+        TipoProcessoSuportado = string.Empty;
+        Ativa = true;
+    }
 
-    // Construtor opcional para facilitar a criação
+    // Construtor completo
     public Maquina(int id, string nome, string processo, bool ativa)
     {
         Id = id;

@@ -6,11 +6,10 @@ namespace Apontamento
         static void Main(string[] args)
         {
 
-            Maquina maquinateste1b = new Maquina();
-            maquinateste1b.Nome = "maquina de pão";
+            Registro registro = new Registro();
+            registro.Iniciar();
 
-            Console.WriteLine(maquinateste1b.Nome);
-
+            
         }
 
     }
