@@ -9,6 +9,11 @@ public class Operador : Base
     //ativa e ativo são iguais ?
     public bool Ativa { get; set; }
 
+    // Construtor sem parâmetros
+    public Operador()
+    {
+    }
+
     // Construtor simples (apenas nome)
     public Operador(string nome)
     {

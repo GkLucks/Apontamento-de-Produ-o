@@ -25,7 +25,7 @@ namespace Apontamento
             {
                 case 1:
                     Console.Write("Nome do Operador: ");
-                    string nome = Console.ReadLine();
+                    string nome = Console.ReadLine()!;
                     _dataManager.SalvarOperador(new Operador { Nome = nome });
                     Console.WriteLine("Operador salvo!");
                     Console.WriteLine("Pressione qualquer tecla para continuar...");

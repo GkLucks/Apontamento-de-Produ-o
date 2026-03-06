@@ -5,6 +5,11 @@ public class Maquina : Base
     public string TipoProcessoSuportado { get; set; } = string.Empty;
     public bool Ativa { get; set; }
 
+    // Construtor sem parâmetros
+    public Maquina()
+    {
+    }
+
     // Construtor simples (apenas nome)
     public Maquina(string nome)
     {

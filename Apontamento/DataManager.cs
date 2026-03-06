@@ -21,7 +21,6 @@ namespace Apontamento
             return new List<Operador>(operadoresRegistrados.Values);
         }
 
-
         List<Maquina> IDataManager.ObterTodasMaquinas()
         {
             return new List<Maquina>(maquinasRegistradas.Values);
