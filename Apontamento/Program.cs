@@ -5,11 +5,11 @@ namespace Apontamento
     {
         static void Main(string[] args)
         {
-
-            Registro registro = new Registro();
-            registro.Iniciar();
-
-            
+            /*
+            IDataManager dataManager = new DataManager();
+            IMenu menu = new Menu(dataManager);
+            menu.ShowMenu();
+         */
         }
 
     }
