@@ -1,4 +1,6 @@
-namespace Apontamento
+using Apontamento.Domain.Interfaces;
+
+namespace Apontamento.API
 {
     public interface IMenu
     {
