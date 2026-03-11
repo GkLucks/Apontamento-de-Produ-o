@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Apontamento")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b930b9bf44ca6ac5b78bc967d73faa08d2ddd71a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b28b8c00dd4fc234fd9a552f2d512b29f79a46a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Apontamento")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Apontamento")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

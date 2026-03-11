@@ -5,13 +5,16 @@ using System.Linq;
 
 namespace Apontamento.API
 {
-    public class Menu : IMenu
+    public class Menu
     {
-        private readonly IDataManager _dataManager;
+        //private readonly IDataManager _dataManager;
+        private readonly IOperadorRepository _operadorRepo;
+        private readonly IMaquinaRepository _maquinaRepo;
 
-        public Menu(IDataManager dataManager)
+        public Menu(IOperadorRepository operadorRepo, IMaquinaRepository maquinaRepo)
         {
-            _dataManager = dataManager;
+            _operadorRepo = operadorRepo;
+            _maquinaRepo = maquinaRepo;
         }
 
         public void ShowMenu()
@@ -50,6 +53,7 @@ namespace Apontamento.API
         {
             bool voltar = false;
             while (!voltar)
+            {
         
             Console.Clear();
             Console.WriteLine("--- MENU: OPERADORES ---");
@@ -81,20 +85,21 @@ namespace Apontamento.API
                         break;
                 }
             }
+            }
         }
 
         public void CadastrarOperador()
                 {
                     Console.Write("Nome do Operador: ");
                     string nome = Console.ReadLine()!;
-                    _dataManager.SalvarOperador(new Operador { Nome = nome });
+                    _operadorRepo.Save(new Operador { Nome = nome });
                     Console.WriteLine("Operador salvo!");
                     AguardarTecla();
                 }
 
         public void ListarOperadores()
         {
-                var lista = _dataManager.ObterTodosOperadores();
+                var lista = _operadorRepo.GetAll();
                 Console.WriteLine("-- Lista de Operadores --");
                 foreach (var op in lista) Console.WriteLine($"- {op.Nome}");
                 AguardarTecla();
@@ -106,7 +111,7 @@ namespace Apontamento.API
             Console.WriteLine("--- EXCLUIR OPERADOR ---");
 
             // 1. Listar o que tem
-            var operadores = _dataManager.ObterTodosOperadores();
+            var operadores = _operadorRepo.GetAll();
             if (operadores.Count == 0)
             {
                 Console.WriteLine("Nenhum operador cadastrado.");
@@ -132,7 +137,7 @@ namespace Apontamento.API
 
                 if (confirmacao == "S")
                 {
-                    _dataManager.ExcluirOperador(operador);
+                    _operadorRepo.Delete(operador);
                     Console.WriteLine("\nOperador removido com sucesso!");
                 }
                 else
@@ -151,6 +156,7 @@ namespace Apontamento.API
         {
             bool voltar = false;
             while (!voltar)
+            {
         
             Console.Clear();
             Console.WriteLine("--- MENU: Maquina ---");
@@ -182,20 +188,21 @@ namespace Apontamento.API
                         break;
                 }
             }
+            }
         }
 
         public void CadastrarMaquina()
         {
             Console.Write("Nome da Máquina: ");
             string nomeMaquina = Console.ReadLine()!;
-            _dataManager.SalvarMaquina(new Maquina { Nome = nomeMaquina });
+            _maquinaRepo.Save(new Maquina { Nome = nomeMaquina });
             Console.WriteLine("Máquina salva!");
             AguardarTecla();
         }
 
         public void ListarMaquina()
         {
-            var listaMaquinas = _dataManager.ObterTodasMaquinas();
+            var listaMaquinas = _maquinaRepo.GetAll();
             Console.WriteLine("-- Lista de Máquinas --");
             foreach (var maq in listaMaquinas) Console.WriteLine($"- {maq.Nome}");
             AguardarTecla();
@@ -209,7 +216,9 @@ namespace Apontamento.API
 
         public void MenuProcesso()
         {
+            Console.Clear();
             Console.WriteLine("EM CONSTRUÇÃO, VOLTE NAS FUTURAS ATUALIZAÇÕES");
+            AguardarTecla();
 
         }
 
@@ -218,8 +227,6 @@ namespace Apontamento.API
             Console.WriteLine("\nPressione qualquer tecla para continuar...");
             Console.ReadKey();
         }
-
-
 
 
     }
