@@ -5,6 +5,7 @@ namespace Apontamento.Domain.Interfaces
         void Save(T entity);
         void Delete(T entity);
         List<T> GetAll();
+        void Update(T entity);
 
     }
 }

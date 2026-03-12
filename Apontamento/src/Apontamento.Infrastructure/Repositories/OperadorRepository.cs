@@ -15,6 +15,8 @@ namespace Apontamento.Infrastructure
 
         public List<Operador> GetAll() => operadoresRegistrados.Values.ToList();
 
+        public void Update(Operador op) => operadoresRegistrados[op.Nome] = op; 
+
     }
 
 }

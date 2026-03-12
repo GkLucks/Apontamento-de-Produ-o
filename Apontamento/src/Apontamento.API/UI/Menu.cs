@@ -1,13 +1,11 @@
 
 using Apontamento.Domain.Aggregates;
 using Apontamento.Domain.Interfaces;
-using System.Linq;
 
 namespace Apontamento.API
 {
     public class Menu
     {
-        //private readonly IDataManager _dataManager;
         private readonly IOperadorRepository _operadorRepo;
         private readonly IMaquinaRepository _maquinaRepo;
 
@@ -204,14 +202,61 @@ namespace Apontamento.API
         {
             var listaMaquinas = _maquinaRepo.GetAll();
             Console.WriteLine("-- Lista de Máquinas --");
-            foreach (var maq in listaMaquinas) Console.WriteLine($"- {maq.Nome}");
+            foreach (var maq in listaMaquinas)
+            {
+                Console.WriteLine($"ID: {maq.Id} | Nome: {maq.Nome} | Status: {(maq.Ativa ? "Ativa" : "Inativa")}");
+            }
             AguardarTecla();
         }
 
         public void ExcluirMaquina()
         {
-            //Ter uma condicional para se houver processo ativo, não excluir a máquina
-            // Na verdade é melhor deixar a máquina inativa ou fora de linha
+            Console.Clear();
+            Console.WriteLine("--- EXCLUIR MÁQUINA ---");
+
+            var maquinas = _maquinaRepo.GetAll();
+            if (maquinas.Count == 0)            {
+                Console.WriteLine("Nenhuma máquina cadastrada.");
+                AguardarTecla();
+                return;
+            }
+
+            foreach (var maq in maquinas)
+            {
+                Console.WriteLine($"ID: {maq.Id} | Nome: {maq.Nome} ({(maq.Ativa ? "Ativa" : "Inativa")})");
+            }
+
+            Console.Write("\nDigite o ID da máquina que deseja desativar: ");
+
+            if (int.TryParse(Console.ReadLine(), out int idEscolhido))
+            {
+                var maquina = maquinas.FirstOrDefault(m => m.Id == idEscolhido);
+                if (maquina != null)
+                {
+                    Console.Write($"\nTEM CERTEZA que deseja desativar '{maquina.Nome}'? (S/N): ");
+                    string confirmacao = Console.ReadLine()?.ToUpper()!;
+
+                    if (confirmacao == "S")
+                    {
+                        maquina.Ativa = false;
+                        _maquinaRepo.Update(maquina);
+                        Console.WriteLine("\nMáquina desativada com sucesso!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nOperação cancelada.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\nErro: ID não encontrado na lista.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida. Por favor, digite um número válido.");
+            }
+            AguardarTecla();
         }
 
         public void MenuProcesso()
