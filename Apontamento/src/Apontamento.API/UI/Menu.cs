@@ -52,63 +52,65 @@ namespace Apontamento.API
             bool voltar = false;
             while (!voltar)
             {
-        
-            Console.Clear();
-            Console.WriteLine("--- MENU: OPERADORES ---");
-            Console.WriteLine("1. Cadastrar");
-            Console.WriteLine("2. Listar");
-            Console.WriteLine("3. Excluir");
-            Console.WriteLine("0. Voltar ao Menu Principal");
-            Console.Write("Escolha: ");
 
-            if (int.TryParse(Console.ReadLine(), out int subOpcao))
+                Console.Clear();
+                Console.WriteLine("--- MENU: OPERADORES ---");
+                Console.WriteLine("1. Cadastrar");
+                Console.WriteLine("2. Listar");
+                Console.WriteLine("3. Excluir");
+                Console.WriteLine("0. Voltar ao Menu Principal");
+                Console.Write("Escolha: ");
+
+                if (int.TryParse(Console.ReadLine(), out int subOpcao))
+                {
+                    switch (subOpcao)
+                    {
+                        case 1:
+                            CadastrarOperador();
+                            break;
+                        case 2:
+                            ListarOperadores();
+                            break;
+                        case 3:
+                            ExcluirOperador();
+                            break;
+                        case 0:
+                            voltar = true;
+                            break;
+                        default:
+                            Console.WriteLine("Opção inválida!");
+                            Thread.Sleep(1000);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void CadastrarOperador()
+        {
+            Console.Write("Nome do Operador: ");
+            string nome = Console.ReadLine()!;
+            _operadorRepo.Save(new Operador { Nome = nome });
+            Console.WriteLine("Operador salvo!");
+            AguardarTecla();
+        }
+
+        private void ListarOperadores()
+        {
+            var lista = _operadorRepo.GetAll();
+            Console.WriteLine("-- Lista de Operadores --");
+            foreach (var op in lista)
             {
-                switch (subOpcao)
-                {
-                    case 1:
-                        CadastrarOperador();
-                        break;
-                    case 2:
-                        ListarOperadores();
-                        break;
-                    case 3:
-                        ExcluirOperador();
-                        break;
-                    case 0:
-                        voltar = true;
-                        break;
-                    default:
-                        Console.WriteLine("Opção inválida!");
-                        Thread.Sleep(1000);
-                        break;
-                }
+                Console.WriteLine($"ID: {op.Id} | Nome: {op.Nome} | Status: {(op.Ativa ? "Ativo" : "Inativo")}");
             }
-            }
+            AguardarTecla();
         }
 
-        public void CadastrarOperador()
-                {
-                    Console.Write("Nome do Operador: ");
-                    string nome = Console.ReadLine()!;
-                    _operadorRepo.Save(new Operador { Nome = nome });
-                    Console.WriteLine("Operador salvo!");
-                    AguardarTecla();
-                }
-
-        public void ListarOperadores()
-        {
-                var lista = _operadorRepo.GetAll();
-                Console.WriteLine("-- Lista de Operadores --");
-                foreach (var op in lista) Console.WriteLine($"- {op.Nome}");
-                AguardarTecla();
-        }
-
-        public void ExcluirOperador()
+        private void ExcluirOperador()
         {
             Console.Clear();
-            Console.WriteLine("--- EXCLUIR OPERADOR ---");
+            Console.WriteLine("--- DESATIVAR OPERADOR ---");
 
-            // 1. Listar o que tem
             var operadores = _operadorRepo.GetAll();
             if (operadores.Count == 0)
             {
@@ -119,28 +121,28 @@ namespace Apontamento.API
 
             foreach (var op in operadores)
             {
-                Console.WriteLine($"- Nome: {op.Nome}");
+                Console.WriteLine($"ID: {op.Id} | Nome: {op.Nome} | Status: {(op.Ativa ? "Ativo" : "Inativo")}");
             }
 
-            Console.Write("\nDigite o NOME exato do operador que deseja excluir: ");
-            string nomeParaExcluir = Console.ReadLine()!;
+            Console.Write("\nDigite o ID exato do operador que deseja desativar: ");
 
-            // 2. Encontrar o operador
-            var operador = operadores.FirstOrDefault(o => o.Nome == nomeParaExcluir);
-            if (operador != null)
+            if (int.TryParse(Console.ReadLine(), out int idParaDesativar))
             {
-                // 3. Confirmar
-                Console.Write($"\nTEM CERTEZA que deseja excluir '{nomeParaExcluir}'? (S/N): ");
-                string confirmacao = Console.ReadLine()?.ToUpper()!;
+                var operador = operadores.FirstOrDefault(o => o.Id == idParaDesativar);
+                if (operador != null)
+                {
+                    Console.Write($"\nTEM CERTEZA que deseja excluir '{idParaDesativar}'? (S/N): ");
+                    string confirmacao = Console.ReadLine()?.ToUpper()!;
 
-                if (confirmacao == "S")
-                {
-                    _operadorRepo.Delete(operador);
-                    Console.WriteLine("\nOperador removido com sucesso!");
-                }
-                else
-                {
-                    Console.WriteLine("\nOperação cancelada.");
+                    if (confirmacao == "S")
+                    {
+                        _operadorRepo.Update(operador);
+                        Console.WriteLine("\nOperador desativado com sucesso!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nOperação cancelada.");
+                    }
                 }
             }
             else
@@ -155,41 +157,41 @@ namespace Apontamento.API
             bool voltar = false;
             while (!voltar)
             {
-        
-            Console.Clear();
-            Console.WriteLine("--- MENU: Maquina ---");
-            Console.WriteLine("1. Cadastrar");
-            Console.WriteLine("2. Listar");
-            Console.WriteLine("3. Excluir");
-            Console.WriteLine("0. Voltar ao Menu Principal");
-            Console.Write("Escolha: ");
 
-            if (int.TryParse(Console.ReadLine(), out int subOpcao))
-            {
-                switch (subOpcao)
+                Console.Clear();
+                Console.WriteLine("--- MENU: Maquina ---");
+                Console.WriteLine("1. Cadastrar");
+                Console.WriteLine("2. Listar");
+                Console.WriteLine("3. Excluir");
+                Console.WriteLine("0. Voltar ao Menu Principal");
+                Console.Write("Escolha: ");
+
+                if (int.TryParse(Console.ReadLine(), out int subOpcao))
                 {
-                    case 1:
-                        CadastrarMaquina();
-                        break;
-                    case 2:
-                        ListarMaquina();
-                        break;
-                    case 3:
-                        ExcluirMaquina();
-                        break;
-                    case 0:
-                        voltar = true;
-                        break;
-                    default:
-                        Console.WriteLine("Opção inválida!");
-                        Thread.Sleep(1000);
-                        break;
+                    switch (subOpcao)
+                    {
+                        case 1:
+                            CadastrarMaquina();
+                            break;
+                        case 2:
+                            ListarMaquina();
+                            break;
+                        case 3:
+                            ExcluirMaquina();
+                            break;
+                        case 0:
+                            voltar = true;
+                            break;
+                        default:
+                            Console.WriteLine("Opção inválida!");
+                            Thread.Sleep(1000);
+                            break;
+                    }
                 }
-            }
             }
         }
 
-        public void CadastrarMaquina()
+        private void CadastrarMaquina()
         {
             Console.Write("Nome da Máquina: ");
             string nomeMaquina = Console.ReadLine()!;
@@ -198,7 +200,7 @@ namespace Apontamento.API
             AguardarTecla();
         }
 
-        public void ListarMaquina()
+        private void ListarMaquina()
         {
             var listaMaquinas = _maquinaRepo.GetAll();
             Console.WriteLine("-- Lista de Máquinas --");
@@ -209,13 +211,14 @@ namespace Apontamento.API
             AguardarTecla();
         }
 
-        public void ExcluirMaquina()
+        private void ExcluirMaquina()
         {
             Console.Clear();
-            Console.WriteLine("--- EXCLUIR MÁQUINA ---");
+            Console.WriteLine("--- DESATIVAR MÁQUINA ---");
 
             var maquinas = _maquinaRepo.GetAll();
-            if (maquinas.Count == 0)            {
+            if (maquinas.Count == 0)
+            {
                 Console.WriteLine("Nenhuma máquina cadastrada.");
                 AguardarTecla();
                 return;
@@ -259,7 +262,7 @@ namespace Apontamento.API
             AguardarTecla();
         }
 
-        public void MenuProcesso()
+        private void MenuProcesso()
         {
             Console.Clear();
             Console.WriteLine("EM CONSTRUÇÃO, VOLTE NAS FUTURAS ATUALIZAÇÕES");
@@ -275,5 +278,5 @@ namespace Apontamento.API
 
 
     }
-    
+
 }
