@@ -1,20 +1,34 @@
 using Apontamento.Domain.Common;
 
+
 namespace Apontamento.Domain.Aggregates
 {
-public class Processo : Base
-{
-    public double ProductionTimeEstimate {get; set;} 
-
-    public DateOnly DeliveryDate {get; set;}
-
-    public string ProcessType {get; set;} = String.Empty;
-       
-    public enum Status
+    public enum StatusProcesso
+    {
+        Pendente,
+        EmExecucao,
+        Finalizado
+    }
+    public class Processo : BaseEntity
+    {
+        public double TempoEstimadoProducao {get; set;}
+        public DateTime DataEntrega {get; set;}
+        public string TipoProcesso {get; set;} = string.Empty;
+        public StatusProcesso Status {get; set;} = StatusProcesso.Pendente;
+        public Processo() {}
+        public Processo(string nome, double tempo, DateTime entrega, string tipo)
         {
-            Pendente,
-            EmExecução,
-            Finalizado
-        }   
-}
+            Nome = nome;
+            TempoEstimadoProducao = tempo;
+            DataEntrega = entrega;
+            TipoProcesso = tipo;
+            Status = StatusProcesso.Pendente;
+        }
+
+
+
+    }
+
+
+
 }

@@ -19,15 +19,13 @@ while (continuar)
 
     if (int.TryParse(entrada, out int opcao))
     {
-        if (opcao == 4) 
-        { 
-           menu.ProcessarOpcao(opcao); 
-        }
-
         menu.ProcessarOpcao(opcao);
-        
-        Console.WriteLine("\nPressione qualquer tecla para continuar...");
-        Console.ReadKey();
+
+        if(opcao != 4)
+        {
+            Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+            Console.ReadKey();
+        }
     }
     else
     {

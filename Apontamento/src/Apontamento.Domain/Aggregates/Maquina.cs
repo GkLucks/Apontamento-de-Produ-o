@@ -3,7 +3,7 @@ using Apontamento.Domain.Common;
 
 namespace Apontamento.Domain.Aggregates
 {
-public class Maquina : Base
+public class Maquina : BaseEntity
 {
     public string TipoProcessoSuportado { get; set; } = string.Empty;
     public bool Ativa { get; set; }

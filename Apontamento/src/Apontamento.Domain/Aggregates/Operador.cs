@@ -3,7 +3,7 @@ using Apontamento.Domain.Common;
 
 namespace Apontamento.Domain.Aggregates
 {
-public class Operador : Base
+public class Operador : BaseEntity
 {
     public string Usuario { get; set; } = string.Empty;
     //O que usar na senha ?

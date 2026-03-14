@@ -1,4 +1,3 @@
-using System.Dynamic;
 using Apontamento.Domain.Aggregates;
 
 namespace Apontamento.Domain.Interfaces
